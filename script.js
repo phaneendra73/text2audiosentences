@@ -6,7 +6,7 @@ const playListDiv = document.querySelector("#playlist");
 
 let lstaudios = "";
 
-const key = "1Oo7UJDxqt";
+const key = "YczRhQgZO9";
 
 button.addEventListener("click", function (event) {
   event.preventDefault();
