@@ -6,14 +6,14 @@ const audio = document.querySelector("#audioelement");
 
 let lstaudios = "";
 
-const key = "1Oo7UJDxqt";
+const key = "YczRhQgZO9";
 
 button.addEventListener("click", function (event) {
   event.preventDefault();
 
   const proxyUrl = "https://cors-anywhere.herokuapp.com/";
   console.log(question.value);
-  const apiUrl = `https://voicecup.com/api?key=[1Oo7UJDxqt]&q=${question.value}`;
+  const apiUrl = `https://voicecup.com/api?key=[YczRhQgZO9]&q=${question.value}`;
   const proxiedUrl = proxyUrl + apiUrl;
   const data = getdata(apiUrl);
 });
