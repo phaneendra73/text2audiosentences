@@ -4,14 +4,13 @@ const button = document.querySelector("#Button");
 
 const playListDiv = document.querySelector("#playlist");
 
-let lstaudios = "";
 
 const key = "YczRhQgZO9";
 
 button.addEventListener("click", function (event) {
   event.preventDefault();
   console.log(question.value);
-  const apiUrl = `http://voicecup.com/api?q=${question.value}&key=1Oo7UJDxqt&l=en&from=10&size=15&length_min=15&length_max=50&duration_min=5&duration_max=25&format=jsonp`;
+  const apiUrl = `https://voicecup.com/api?q=${question.value}&key=1Oo7UJDxqt&l=en&from=10&size=15&length_min=15&length_max=50&duration_min=5&duration_max=25&format=jsonp`;
   fetchData(apiUrl);
 });
 
