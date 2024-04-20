@@ -15,7 +15,7 @@ button.addEventListener("click", function (event) {
   console.log(question.value);
   const apiUrl = `https://voicecup.com/api?key=[1Oo7UJDxqt]&q=${question.value}`;
   const proxiedUrl = proxyUrl + apiUrl;
-  const data = getdata(proxiedUrl);
+  const data = getdata(apiUrl);
 });
 
 async function getdata(proxiedUrl) {
