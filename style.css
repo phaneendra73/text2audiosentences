@@ -1,0 +1,107 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+  background-color: rgb(54, 56, 56);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+#label {
+  font-weight: bolder;
+  font-size: larger;
+  color: cornsilk;
+}
+#pronounce-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#pronounce-form label {
+  margin-bottom: 10px;
+}
+
+#pronounce-form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 300px;
+  font-size: 16px;
+}
+
+#Button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4caf50;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#pronounce-button:hover {
+  background-color: #45a049;
+}
+
+#playlist {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Style for each audio item */
+.audio-item {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for audio title */
+.audio-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Style for audio description */
+.audio-description {
+  margin-bottom: 10px;
+}
+
+/* Style for the audio player */
+audio {
+  width: 100%;
+  outline: none;
+  border: none;
+}
+
+#not-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f8d7da;
+  color: #721c24;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#not-found img {
+  width: 80px;
+  height: 80px;
+}
+
+#not-found p {
+  margin-top: 10px;
+}

@@ -5,19 +5,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Spelling Pronunciation</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <form>
-    <label>Enter Spelling To Pronounce:</label>
-    <input id="question" type="text">
-    <button id="Button" type="button">Pronounce</button>
-  </form>
-
-  <div id="audioelement">
+  <div class="container">
+    <form id="pronounce-form">
+      <label for="question" id="label">Enter word to find sentence :</label>
+      <input id="question" type="text">
+      <button id="Button" type="button">Find</button>
+    </form>
+    <div id="playlist">
+      <!-- Each audio item will be dynamically added here -->
+    </div>
   </div>
-
   <script src="script.js"></script>
 </body>
+
 
 </html>
