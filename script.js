@@ -4,7 +4,6 @@ const button = document.querySelector("#Button");
 
 const playListDiv = document.querySelector("#playlist");
 
-
 const key = "YczRhQgZO9";
 
 button.addEventListener("click", function (event) {
@@ -35,7 +34,14 @@ async function getdata(proxiedUrl) {
         resolve(response);
       },
       error: function (xhr, status, error) {
+        $("#spinner").hide();
         reject(new Error(status + ": " + error));
+        playlistHTML = `<div id="not-found">
+  <img src="https://emojicdn.elk.sh/😔" alt=" Emoji">
+  <p>Oops! Sentences not found.</p>
+  
+</div>`;
+        playListDiv.innerHTML = playlistHTML;
       },
     });
   });
@@ -43,9 +49,12 @@ async function getdata(proxiedUrl) {
 
 async function fetchData(apiUrl) {
   try {
+    let playlistHTML = "";
+    playListDiv.innerHTML = playlistHTML;
+    $("#spinner").show();
     const response = await getdata(apiUrl);
     console.log(response);
-    let playlistHTML = "";
+    $("#spinner").hide();
     if (response.hits_total > 0) {
       for (let index = 0; index < response.hits.length; index++) {
         const audioItem = response.hits[index];
@@ -63,6 +72,7 @@ async function fetchData(apiUrl) {
         }
       }
     } else {
+      $("#spinner").hide();
       console.log(response.errors);
       playlistHTML = `<div id="not-found">
   <img src="https://emojicdn.elk.sh/😔" alt=" Emoji">
@@ -71,7 +81,6 @@ async function fetchData(apiUrl) {
 `;
     }
     playListDiv.innerHTML = playlistHTML;
-    console.log(lstaudios);
   } catch (error) {
     console.error("There was a problem with the fetch operation:", error);
   }
