@@ -1,87 +1,71 @@
 const question = document.querySelector("#question");
-
-const button = document.querySelector("#Button");
-
+const button = document.querySelector("#search-btn");
 const playListDiv = document.querySelector("#playlist");
+const spinner = document.querySelector("#spinner");
 
 const key = "YczRhQgZO9";
 
-button.addEventListener("click", function (event) {
-  event.preventDefault();
-  console.log(question.value);
-  const apiUrl = `https://voicecup.com/api?q=${question.value}&key=1Oo7UJDxqt&l=en&from=10&size=15&length_min=15&length_max=50&duration_min=5&duration_max=25&format=jsonp`;
+button.addEventListener("click", () => {
+  const word = question.value.trim();
+  if (!word) return;
+
+  const apiUrl = `https://voicecup.com/api?q=${encodeURIComponent(word)}&key=1Oo7UJDxqt&l=en&from=10&size=15&length_min=15&length_max=50&duration_min=5&duration_max=25&format=jsonp`;
   fetchData(apiUrl);
 });
 
-async function getdata(proxiedUrl) {
-  return new Promise(function (resolve, reject) {
+function getData(proxiedUrl) {
+  return new Promise((resolve, reject) => {
     $.ajax({
       url: proxiedUrl,
-      data: {
-        q: "hi",
-        key: "1Oo7UJDxqt",
-        l: "en",
-        from: 10,
-        size: 15,
-        length_min: 15,
-        length_max: 50,
-        duration_min: 5,
-        duration_max: 25,
-        format: "jsonp",
-      },
       dataType: "jsonp",
-      success: function (response) {
-        resolve(response);
-      },
-      error: function (xhr, status, error) {
-        $("#spinner").hide();
-        reject(new Error(status + ": " + error));
-        playlistHTML = `<div id="not-found">
-  <img src="https://emojicdn.elk.sh/😔" alt=" Emoji">
-  <p>Oops! Sentences not found.</p>
-  
-</div>`;
-        playListDiv.innerHTML = playlistHTML;
-      },
+      success: resolve,
+      error: reject
     });
   });
 }
 
 async function fetchData(apiUrl) {
+  playListDiv.innerHTML = "";
+  spinner.style.display = "block";
+
   try {
-    let playlistHTML = "";
-    playListDiv.innerHTML = playlistHTML;
-    $("#spinner").show();
-    const response = await getdata(apiUrl);
-    console.log(response);
-    $("#spinner").hide();
+    const response = await getData(apiUrl);
+    spinner.style.display = "none";
+
     if (response.hits_total > 0) {
-      for (let index = 0; index < response.hits.length; index++) {
-        const audioItem = response.hits[index];
-        if (audioItem.duration > 5) {
-          playlistHTML += `
+      renderPlaylist(response.hits);
+    } else {
+      showNotFound();
+    }
+  } catch (error) {
+    spinner.style.display = "none";
+    showNotFound();
+  }
+}
+
+function renderPlaylist(hits) {
+  let content = "";
+  hits.forEach(item => {
+    if (item.duration > 5) {
+      content += `
         <div class="audio-item">
-          <p class="audio-title">${audioItem.title}</p>
-          <p class="audio-description">${audioItem.body}</p>
+          <p class="audio-title">${item.title}</p>
+          <p class="audio-description">${item.body}</p>
           <audio controls preload="auto" controlsList="nodownload">
-            <source src="https://voicecup.com/play?key=${key}&filename=${audioItem.filename_audio}&filetype=mp4&start=${audioItem.start}&duration=${audioItem.duration}&subs_id=${audioItem.id}" type="audio/mp4">
+            <source src="https://voicecup.com/play?key=${key}&filename=${item.filename_audio}&filetype=mp4&start=${item.start}&duration=${item.duration}&subs_id=${item.id}" type="audio/mp4">
             Your browser does not support the audio element.
           </audio>
         </div>
       `;
-        }
-      }
-    } else {
-      $("#spinner").hide();
-      console.log(response.errors);
-      playlistHTML = `<div id="not-found">
-  <img src="https://emojicdn.elk.sh/😔" alt=" Emoji">
-  <p>Oops! Sentences not found.</p>
-</div>
-`;
     }
-    playListDiv.innerHTML = playlistHTML;
-  } catch (error) {
-    console.error("There was a problem with the fetch operation:", error);
-  }
+  });
+  playListDiv.innerHTML = content || showNotFound();
+}
+
+function showNotFound() {
+  playListDiv.innerHTML = `
+    <div id="not-found">
+      <p>😔 Oops! No sentences found.</p>
+    </div>
+  `;
 }
