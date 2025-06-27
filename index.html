@@ -4,26 +4,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spelling Pronunciation</title>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <title>Word Sentence Finder</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
-  <div class="container">
+  <div class="app-container">
+    <h1>Sentence Finder with Audio</h1>
     <form id="pronounce-form">
-      <label for="question" id="label">Enter word to find sentence :</label>
-      <input id="question" type="text">
-      <button id="Button" type="button">Find</button>
+      <label for="question">Enter a word:</label>
+      <input id="question" type="text" placeholder="Type a word..." required>
+      <button id="search-btn" type="button">Search</button>
     </form>
+
     <div class="spinner" id="spinner"></div>
+    <div id="playlist"></div>
   </div>
 
-  <div id="playlist">
-    <!-- Each audio item will be dynamically added here -->
-  </div>
-
+  <script src="script.js"></script>
 </body>
-<script src="script.js"></script>
 
 </html>
