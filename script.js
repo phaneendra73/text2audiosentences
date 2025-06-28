@@ -3,7 +3,7 @@ const button = document.querySelector("#search-btn");
 const playListDiv = document.querySelector("#playlist");
 const spinner = document.querySelector("#spinner");
 
-const key = "YczRhQgZO9";
+const key = "K4Nx6FsB2o";
 
 button.addEventListener("click", () => {
   const word = question.value.trim();
