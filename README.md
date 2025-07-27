@@ -54,7 +54,11 @@ Your site is live at: [https://phaneendra73.github.io/text2audiosentences/](http
 - API by [voicecup.com](https://voicecup.com)
 
 ---
+## 📷 Screenshot
 
+<img width="1898" height="962" alt="image" src="https://github.com/user-attachments/assets/fb9c5a29-5a75-45c0-864e-49327dd549c7" />
+
+---
 ## 📌 License
 
 Free to use for learning and personal projects.
